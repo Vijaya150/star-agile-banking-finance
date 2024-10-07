@@ -7,25 +7,10 @@ pipeline {
                 echo 'GitHub URL checked out successfully'
             }
         }
-        stage('Publish HTML Report') {
-            steps {
-                // Specify the directory where index.html is located
-                publishHTML([
-                    allowMissing: false, 
-                    alwaysLinkToLastBuild: false, 
-                    keepAll: false, 
-                    reportDir: 'reports',  // Update this path as needed
-                    reportFiles: 'index.html', 
-                    reportName: 'HTML Report', 
-                    reportTitles: '', 
-                    useWrapperFileDirectly: true
-                ])
-            }
-        }
         stage('JUnit Test Results') {
             steps {
-                junit testResults: '**/target/surefire-reports/*.xml', // Update this path as needed
-                // Alternatively, specify the actual location of your JUnit XML files
+                // Ensure this path matches where your JUnit XML files are generated
+                junit testResults: '**/target/surefire-reports/*.xml'  // Remove the comma after this line
                 echo 'JUnit test results published'
             }
         }
