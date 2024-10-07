@@ -7,5 +7,10 @@ pipeline{
                  echo 'github url checkout'
             }
         }
+       stage('Publish HTML Report') {
+            steps {
+        publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+            }
+       }
     }
 }
